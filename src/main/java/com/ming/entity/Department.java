@@ -1,87 +1,17 @@
 package com.ming.entity;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 /**
  * 
  * @TableName department
  */
-public class Department implements Serializable {
-    /**
-     * 部门id，主键，自增长
-     */
-    private Object id;
-
-    /**
-     * 部门名称
-     */
-    private String name;
-
-    private static final long serialVersionUID = 1L;
-
-    /**
-     * 部门id，主键，自增长
-     */
-    public Object getId() {
-        return id;
-    }
-
-    /**
-     * 部门id，主键，自增长
-     */
-    public void setId(Object id) {
-        this.id = id;
-    }
-
-    /**
-     * 部门名称
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * 部门名称
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
+public class Department extends BaseFields implements Serializable {
     @Override
-    public boolean equals(Object that) {
-        if (this == that) {
-            return true;
-        }
-        if (that == null) {
-            return false;
-        }
-        if (getClass() != that.getClass()) {
-            return false;
-        }
-        Department other = (Department) that;
-        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()));
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+    public String getRowKey() {
+        // dept:1,  dept:2:
+        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+        return "dept:" + super.getId() + ":" + uuid;
     }
 }

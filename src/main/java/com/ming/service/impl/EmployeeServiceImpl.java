@@ -1,5 +1,6 @@
 package com.ming.service.impl;
 
+import com.alibaba.druid.sql.visitor.functions.Char;
 import com.github.pagehelper.PageInfo;
 import com.ming.Dto.EmployeeDto;
 import com.ming.Dto.PageDto;
@@ -57,9 +58,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return result;
 	}
 
-	public Result toDelete(int[] ints){
-		int employees = mapper.toDelete(ints);
-		Result result = new Result();
-		return result;
+	@Override
+	public Result toDelete(String[] ints){
+		return Result.of(mapper.toDelete(ints),"动态删除失败");
 	}
 }

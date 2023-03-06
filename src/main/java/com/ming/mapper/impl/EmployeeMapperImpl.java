@@ -47,7 +47,7 @@ public class EmployeeMapperImpl extends SessionHelper implements EmployeeMapper 
 	}
 
 	@Override
-	public int toDelete(int[] ints) {
+	public int toDelete(String[] ints) {
 		return SessionHelper.dml(sqlSession ->sqlSession.getMapper(EmployeeMapper.class).toDelete(ints));
 	}
 }

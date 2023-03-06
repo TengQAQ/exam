@@ -15,5 +15,5 @@ import java.util.List;
 public interface EmployeeMapper extends BaseMapper<Integer,Employee>{
 	List<Employee> selectAll(EmployeeDto dto);
 
-	int toDelete(int[] ints);
+	int toDelete(String[] ints);
 }
